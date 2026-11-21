@@ -6,25 +6,32 @@
 
     <modelVersion>4.0.0</modelVersion>
 
+    <!-- Project details -->
     <groupId>com.example</groupId>
-    <artifactId>Day7-jenkins</artifactId>
-    <version>1.0</version>
+    <artifactId>jenkins-day7</artifactId>
+    <version>1.0.0</version>
+    <packaging>jar</packaging>
+
+    <name>Jenkins Day 7 Maven Project</name>
+    <description>Maven project for Jenkins CI/CD and Nexus artifact deployment</description>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <junit.version>4.13.2</junit.version>
     </properties>
 
-    <dependencies>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>${junit.version}</version>
-            <scope>test</scope>
-        </dependency>
-    </dependencies>
+    <!-- Nexus Repository Configuration -->
+    <distributionManagement>
+
+        <!-- Release repository -->
+        <repository>
+            <id>nexus-releases</id>
+            <name>Nexus Releases</name>
+            <url>http://172.31.33.127:8081/repository/maven-releases/</url>
+        </repository>
+
+    </distributionManagement>
 
 </project>
 
