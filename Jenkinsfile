@@ -55,7 +55,7 @@ pipeline {
 
                         NEXUS_URL="http://172.31.33.127:8081/repository/maven-releases"
 
-                        JAR_FILE="target/jenkins-day7-1.0.jar"
+                        JAR_FILE="target/jenkins-day7-1.0.0.jar"
                         POM_FILE="pom.xml"
 
                         echo "Uploading JAR to Nexus..."

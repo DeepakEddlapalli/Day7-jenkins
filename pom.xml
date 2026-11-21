@@ -15,22 +15,30 @@
     <name>Jenkins Day 7 Maven Project</name>
     <description>Maven project for Jenkins CI/CD and Nexus artifact deployment</description>
 
+    <!-- Java configuration -->
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
+    <!-- JUnit dependency -->
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.13.2</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
     <!-- Nexus Repository Configuration -->
     <distributionManagement>
-
-        <!-- Release repository -->
         <repository>
             <id>nexus-releases</id>
             <name>Nexus Releases</name>
             <url>http://172.31.33.127:8081/repository/maven-releases/</url>
         </repository>
-
     </distributionManagement>
 
 </project>
