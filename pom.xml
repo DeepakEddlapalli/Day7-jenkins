@@ -10,7 +10,7 @@
     <!-- Project details -->
     <groupId>com.example</groupId>
     <artifactId>jenkins-day7</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
     <packaging>jar</packaging>
 
     <name>Jenkins Day 7 Maven Project</name>

@@ -43,9 +43,9 @@ pipeline {
                 withSonarQubeEnv('SonarQube-Server1') {
 
                     sh '''
-                         mvn org.sonarsource.scanner.maven:sonar-maven-plugin:5.5.0.6356:sonar \
-                        -Dsonar.projectKey=jenkins-day9 \
-                        -Dsonar.coverage.jacoco.xmlReportPaths=target/site/jacoco/jacoco.xml
+                        mvn org.sonarsource.scanner.maven:sonar-maven-plugin:5.5.0.6356:sonar \
+                            -Dsonar.projectKey=jenkins-day9 \
+                            -Dsonar.coverage.jacoco.xmlReportPaths=target/site/jacoco/jacoco.xml
                     '''
                 }
             }
@@ -91,22 +91,24 @@ pipeline {
 
                         NEXUS_URL="http://172.31.33.127:8081/repository/maven-releases"
 
-                        JAR_FILE="target/jenkins-day7-1.0.0.jar"
+                        JAR_FILE="target/jenkins-day7-1.0.1.jar"
                         POM_FILE="pom.xml"
+
+                        ARTIFACT_PATH="com/example/jenkins-day7/1.0.1"
 
                         echo "Uploading JAR to Nexus..."
 
                         curl --fail --silent --show-error \
                             --user "$NEXUS_USER:$NEXUS_PASS" \
                             --upload-file "$JAR_FILE" \
-                            "$NEXUS_URL/com/example/jenkins-day7/1.0/jenkins-day7-1.0.0.jar"
+                            "$NEXUS_URL/$ARTIFACT_PATH/jenkins-day7-1.0.1.jar"
 
                         echo "Uploading POM to Nexus..."
 
                         curl --fail --silent --show-error \
                             --user "$NEXUS_USER:$NEXUS_PASS" \
                             --upload-file "$POM_FILE" \
-                            "$NEXUS_URL/com/example/jenkins-day7/1.0/jenkins-day7-1.0.pom"
+                            "$NEXUS_URL/$ARTIFACT_PATH/jenkins-day7-1.0.1.pom"
 
                         echo "Artifact successfully uploaded to Nexus."
                     '''
