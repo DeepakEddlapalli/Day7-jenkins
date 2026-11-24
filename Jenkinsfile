@@ -43,7 +43,7 @@ pipeline {
                 withSonarQubeEnv('SonarQube-Server1') {
 
                     sh '''
-                        mvn sonar:sonar \
+                         mvn org.sonarsource.scanner.maven:sonar-maven-plugin:5.5.0.6356:sonar \
                         -Dsonar.projectKey=jenkins-day9 \
                         -Dsonar.coverage.jacoco.xmlReportPaths=target/site/jacoco/jacoco.xml
                     '''
