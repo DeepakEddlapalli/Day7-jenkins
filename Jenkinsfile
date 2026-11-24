@@ -99,7 +99,7 @@ pipeline {
                         curl --fail --silent --show-error \
                             --user "$NEXUS_USER:$NEXUS_PASS" \
                             --upload-file "$JAR_FILE" \
-                            "$NEXUS_URL/com/example/jenkins-day7/1.0/jenkins-day7-1.0.jar"
+                            "$NEXUS_URL/com/example/jenkins-day7/1.0/jenkins-day7-1.0.0.jar"
 
                         echo "Uploading POM to Nexus..."
 
