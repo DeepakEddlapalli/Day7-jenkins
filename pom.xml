@@ -16,7 +16,7 @@
     <name>Jenkins Day 7 Maven Project</name>
     <description>Maven project for Jenkins CI/CD and Nexus artifact deployment</description>
 
-    <!-- Java configuration -->
+    <!-- Java and SonarQube configuration -->
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
@@ -54,7 +54,6 @@
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
                 <version>0.8.13</version>
-
                 <executions>
                     <execution>
                         <goals>
@@ -70,6 +69,13 @@
                         </goals>
                     </execution>
                 </executions>
+            </plugin>
+
+            <!-- Maven Deploy Plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <version>3.1.4</version>
             </plugin>
 
         </plugins>
