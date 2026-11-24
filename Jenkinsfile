@@ -19,15 +19,51 @@ pipeline {
             }
         }
 
-        stage('Test') {
+        stage('Test and JaCoCo Coverage') {
             steps {
-                echo 'Running unit tests'
-                sh 'mvn test'
+                echo 'Running unit tests and generating JaCoCo report'
+                sh 'mvn verify'
             }
 
             post {
                 always {
-                    junit 'target/surefire-reports/*.xml'
+                    junit allowEmptyResults: true,
+                          testResults: 'target/surefire-reports/*.xml'
+
+                    archiveArtifacts allowEmptyArchive: true,
+                                     artifacts: 'target/site/jacoco/**'
+                }
+            }
+        }
+
+        stage('SonarQube Analysis') {
+            steps {
+                echo 'Running SonarQube code analysis'
+
+                withSonarQubeEnv('SonarQube-Server1') {
+
+                    sh '''
+                        mvn sonar:sonar \
+                        -Dsonar.projectKey=jenkins-day9 \
+                        -Dsonar.coverage.jacoco.xmlReportPaths=target/site/jacoco/jacoco.xml
+                    '''
+                }
+            }
+        }
+
+        stage('Quality Gate') {
+            steps {
+                echo 'Waiting for SonarQube Quality Gate result'
+
+                timeout(time: 10, unit: 'MINUTES') {
+
+                    script {
+                        def qg = waitForQualityGate(
+                            abortPipeline: true
+                        )
+
+                        echo "Quality Gate Status: ${qg.status}"
+                    }
                 }
             }
         }
